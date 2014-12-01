@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script>	
+
+		var db = openDatabase('Interno', '1.0', 'Test DB', 2 * 1024 * 1024);
+		
+		//deleteTable();	
+		//createTable();
+		//insertLinha();
+		//insertOnibus();
+		//updateTable();
+		//printRes();
+		//getValue(3,'NomeAntigo');
+
+		function createTable(){
+			db.transaction(
+				function(transaction) {         
+			 		transaction.executeSql('CREATE TABLE IF NOT EXISTS Linha (NomeNovo NOT NULL UNIQUE, NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor, PRIMARY KEY (NomeNovo))');
+
+			 		transaction.executeSql('CREATE TABLE IF NOT EXISTS Onibus (Numero NOT NULL UNIQUE, Condicao, ArCondicionado, NomeLinha references Linha(NomeNovo), PRIMARY KEY (Numero))');
+
+			 	}
+			); 
+		}
+
+		function insertLinha(){
+			db.transaction(
+				function(transaction) {
+
+				 	transaction.executeSql('INSERT INTO Linha (NomeNovo , NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor) VALUES ("Linha BRT 1", "Vila Residencial", "TrajetoVila", "60", "7 as 12", "Laranja")');
+
+				 	transaction.executeSql('INSERT INTO Linha (NomeNovo , NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor) VALUES ("Linha BRT 2", "Coppead", "TrajetoCoppe", "30", "7 as 12", "Azul")');
+
+				 	transaction.executeSql('INSERT INTO Linha (NomeNovo , NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor) VALUES ("Linha BRT 3", "Alojamento", "TrajetoAloja", "20", "7 as 12", "Verde")');
+				}
+			); 
+		}
+
+		function insertOnibus(){
+			db.transaction(
+				function(transaction) {
+
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("1", "Boa", "Sim", "BRT Linha 1")');
+
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("2", "Boa", "Nao", "BRT Linha 1")');
+
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("3", "Ruim", "Sim", "BRT Linha 2")');
+
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("4", "Ruim", "Nao", "BRT Linha 3")');
+				}
+			); 
+		}
+
+		function deleteTable(){
+			db.transaction(
+				function(transaction) {
+					transaction.executeSql('DROP TABLE Linha');
+					transaction.executeSql('DROP TABLE Onibus');
+				}
+			);
+		}
+
+		function updateTable(){
+			db.transaction(
+				function(transaction) {
+					transaction.executeSql('UPDATE Linha SET NomeAntigo = "Alojamento" WHERE Trajeto="TrajetoAloja"');
+				}
+			);
+		}
+
+		function printRes(){
+			db.transaction(
+				function(transaction) {
+					transaction.executeSql(
+						"SELECT * FROM Linha",
+						[],
+						function(transaction, result){
+            				console.log('deu certo!');
+            				console.log(result);
+
+            				for(var i = 0; i < result.rows.length; i++){
+            					console.log(result.rows.item(i));
+            					//console.log(result.rows.item(i)[['NomeNovo']]);
+            				}
+        				},
+        				function(transaction, error){
+           					console.log('deu pau!');
+            				console.log(error);
+            			}
+            		);
+				}
+			);
+		}
+
+		function getValue(item, coluna){
+			var valor;
+			db.transaction(
+				function(transaction) {
+					transaction.executeSql(
+						"SELECT * FROM Linha",
+						[],
+						function(transaction, result){
+            				//console.log(result);          				
+            				valor = (result.rows.item(item-1)[[coluna]]);
+            				console.log(valor);
+        				},
+        				function(transaction, error){
+           					console.log('deu pau!');
+            				console.log(error);
+            			}
+            		);
+				}
+			);
+			return valor;
+		}
+
+		
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
