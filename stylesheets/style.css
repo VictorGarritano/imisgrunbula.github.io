@@ -8,8 +8,29 @@ body {
 	font-family: 'OpenSansLight';
 }
 
-#h1_comente {
+.header {
 	text-align: left;
 	font-size: 40px;
 	font-style: normal;
+}
+
+.header_who {
+	text-align: center;
+	font-size: 40px;
+	font-style: normal;
+}
+
+.your_place_is_here {
+	text-align: center;
+	font-style: normal;
+	font-size: 30px;
+}
+
+.selecao {
+	font-size: 25px;
+}
+
+a:link, a:visited, a:hover, a:active {
+	color: black;
+	text-decoration: underline;
 }
