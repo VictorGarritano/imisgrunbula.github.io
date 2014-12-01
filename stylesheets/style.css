@@ -7,3 +7,9 @@
 body {
 	font-family: 'OpenSansLight';
 }
+
+#h1_comente {
+	text-align: left;
+	font-size: 40px;
+	font-style: normal;
+}
