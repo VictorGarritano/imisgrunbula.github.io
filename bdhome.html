@@ -4,15 +4,7 @@
 
 	</head>
 
-	<body>
-		<div align="center">
-			<select name="mydropdown">
-			<option value="Milk">Fresh Milk</option>
-			<option value="Cheese">Old Cheese</option>
-			<option value="Bread">Hot Bread</option>
-			</select>
-		</div>
-	</body>
+	
 
 		<script>	
 
@@ -25,6 +17,49 @@
 		//updateTable();
 		//printRes();
 		//getValue(3,'NomeAntigo');
+
+		function buildSelect(){
+			$(document).ready(function(){
+			$('#category').on('change',function(){
+
+			var cat = document.getElementById('category').value;
+
+
+			    alert(cat);
+
+
+			    db.transaction(function (tx) {
+			//alert("SELECT levell FROM level WHERE category="+cat);
+
+			tx.executeSql('SELECT levell FROM level WHERE category='+cat, [category], function (tx,results) { 
+
+
+			    alert("hello");
+
+
+			    for (var i=0; i < results.rows.length; i++){
+
+
+			     row = results.rows.item(i);
+			editRecords2(row.lev_id,row.levell);
+
+
+			     }
+
+
+			     });
+
+			        });
+			        });
+			        });
+
+
+			    function editRecords2(lev_id,levell) {
+			    f = $('#level');
+			    f.html("");
+			    f.html(f.html() + '<option value='+lev_id+'>'+levell+'</option>');
+			    }
+		}
 
 		function createTable(){
 			db.transaction(
@@ -128,6 +163,27 @@
 			return valor;
 		}
 		
+		buildSelect();
+
 		</script>
 	
+	<body>
+		<form>
+			<div align="left">
+				<select id='category' required>
+			        <option value='' disabled selected>Select your category</option>
+			        <option id='c1'>Category 1</option>
+			        <option id='c2'>Category 2</option>
+			        <option id='c3'>Category 3</option>
+			        <option id='c4'>Category 4</option>
+			        <option id='c5'>Category 5</option>
+			        <option id='c6'>Category 6</option>
+		   		</select>
+
+		   <select id="level">
+	  	 <option value="">Select your level</option>
+	   </select>
+		</div>
+	</form>
+	</body>
 </html>
