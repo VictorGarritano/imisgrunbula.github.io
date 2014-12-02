@@ -45,7 +45,7 @@
 	function updateTable(){
 			db.transaction(
 				function(transaction) {
-					transaction.executeSql('UPDATE Linha SET NomeAntigo = "Alojamento" WHERE Trajeto="TrajetoAloja"');
+					transaction.executeSql('UPDATE Comentario SET ComentarioCirc1	 = "Alojamento" WHERE Trajeto="TrajetoAloja"');
 				}
 			);
 		}
@@ -76,25 +76,23 @@
 					var texto = document.getElementById('campoTexto').value;
 					console.log(texto);
 					if(check == 1){
-						var insertStatement="INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (?,?,?,?,?)";
-              			transaction.executeSql(insertStatement, [texto,null,null,null,null,null]);
-						//transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (texto, "", "", "", "")');
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (texto, null, null, null, null)');
 						console.log("entrei no insert1");
 					}
 					else if(check == 2){
-						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("", texto, "", "", "")');
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (null, texto, null, null, null)');
 						console.log("entrei no insert2");
 					}
 					else if(check == 3){
-						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("", "", texto, "", "")');
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (null, null, texto, null, null)');
 						console.log("entrei no insert3");
 					}
 					else if(check == brt){
-						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("", "", "", texto, "")');
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (null, null, null, texto, null)');
 						console.log("entrei no insertbrt");
 					}
 					else if(check == outro){
-						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("", "", "", "", texto)');
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (null, null, null, null, texto)');
 						console.log("entrei no insertoutro");
 					}
 				}
