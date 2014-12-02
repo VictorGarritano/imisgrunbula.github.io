@@ -103,7 +103,7 @@
 			);
 		}
 
-		function printRes(){
+		function printRes(linha){
 			db.transaction(
 				function(transaction) {
 					transaction.executeSql(
@@ -113,10 +113,11 @@
             				console.log('deu certo!');
             				console.log(result);
 
-            				for(var i = 0; i < result.rows.length; i++){
-            					console.log(result.rows.item(i));
+            				
+            					document.getElementById('boldStuff').innerHTML = result.rows.item(linha-1)[['NomeNovo']];
+            					//console.log(result.rows.item(linha-1));
             					//console.log(result.rows.item(i)[['NomeNovo']]);
-            				}
+            				
         				},
         				function(transaction, error){
            					console.log('deu pau!');
@@ -152,6 +153,7 @@
 		</script>
 		<body>
 			<form>
+				<p>Welcome to the site <b id='boldStuff'>dude</b> </p>
 				<input type="button" onclick="getValue(2, 'NomeNovo');" value="Exibir informações da Linha 1">
 				<input type="button" onclick="???" value="Exibir informações da Linha 2">
 				<input type="button" onclick="???" value="Exibir informações da Linha 3">
