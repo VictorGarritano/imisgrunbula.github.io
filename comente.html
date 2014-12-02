@@ -77,7 +77,7 @@
 					console.log(texto);
 					if(check == 1){
 						var insertStatement="INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (?,?,?,?,?)";
-              			transaction.executeSql(insertStatement, [texto,"","","","",""]);
+              			transaction.executeSql(insertStatement, [texto,null,null,null,null,null]);
 						//transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (texto, "", "", "", "")');
 						console.log("entrei no insert1");
 					}
