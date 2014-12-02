@@ -126,7 +126,7 @@
 
             				
             					document.getElementById('nomeNovo').innerHTML = result.rows.item(linha)[['NomeNovo']];
-            					document.getElementById('NomeAntigo').innerHTML = result.rows.item(linha)[['NomeAntigo']];
+            					document.getElementById('nomeAntigo').innerHTML = result.rows.item(linha)[['NomeAntigo']];
             					document.getElementById('trajeto').innerHTML = result.rows.item(linha)[['Trajeto']];
             					document.getElementById('tempoDeTrajeto').innerHTML = result.rows.item(linha)[['TempoDeTrajeto']];
             					document.getElementById('horario').innerHTML = result.rows.item(linha)[['Horario']];
@@ -171,12 +171,12 @@
 				<input type="button" onclick="printRes(1);" value="Exibir informações da Linha 2">
 				<input type="button" onclick="printRes(2);" value="Exibir informações da Linha 3">
 
-				<p>Welcome to the site <b id='nomeNovo'>dude</b> </p>				
-				<p>Welcome to the site <b id='nomeAntigo'>dude</b> </p>
-				<p>Welcome to the site <b id='trajeto'>dude</b> </p>
-				<p>Welcome to the site <b id='tempoDeTrajeto'>dude</b> </p>
-				<p>Welcome to the site <b id='horario'>dude</b> </p>
-				<p>Welcome to the site <b id='cor'>dude</b> </p>
+				<p>Nome novo: <b id='nomeNovo'></b> </p>				
+				<p>Nome antigo: <b id='nomeAntigo'></b> </p>
+				<p>Link para trajeto: <a href="rota.html"><b id='trajeto'></b> </a> </p>
+				<p>Tempo do trajeto em minutos: <b id='tempoDeTrajeto'></b> </p>
+				<p>Horário de circulação: <b id='horario'></b> </p>
+				<p>Cor da linha: <b id='cor'></b> </p>
 
 
 			</form>
