@@ -81,31 +81,27 @@
 					console.log(texto);
 					var i = 0;
 					if(check == 1){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", "", "", "")');
+						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,texto, "", "", "", "")');
 						console.log("entrei no insert1");
-						transaction.executeSql('UPDATE Comentario SET ComentarioCirc1 = texto WHERE Numero=i');
 					}
 					else if(check == 2){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", "", "", "")');
-						transaction.executeSql('UPDATE Comentario SET ComentarioCirc2 = texto WHERE Numero=i');
+						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", texto "", "", "")');
 						console.log("entrei no insert2");
 					}
 					else if(check == 3){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", "", "", "")');
-						transaction.executeSql('UPDATE Comentario SET ComentarioCirc3 = texto WHERE Numero=i');
+						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", texto, "", "")');
 						console.log("entrei no insert3");
 					}
 					else if(check == brt){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", "", "", "")');
-						transaction.executeSql('UPDATE Comentario SET ComentarioBRT = texto WHERE Numero=i');
+						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", "", texto, "")');
 						console.log("entrei no insertbrt");
 					}
 					else if(check == outro){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", "", "", "")');
-						transaction.executeSql('UPDATE Comentario SET ComentarioOutro = texto WHERE Numero=i');
+						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", "", "", texto)');
 						console.log("entrei no insertoutro");
 					}
 					i = i+1;
+					console.log(i);
 				}
 			);
 	}
