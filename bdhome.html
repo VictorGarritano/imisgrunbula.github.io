@@ -11,9 +11,9 @@
 		var db = openDatabase('Interno', '1.0', 'Test DB', 2 * 1024 * 1024);
 		
 		//deleteTable();	
-		//createTable();
-		//insertLinha();
-		//insertOnibus();
+		createTable();
+		insertLinha();
+		insertOnibus();
 		//updateTable();
 		//printRes();
 		//getValue(3,'NomeAntigo');
@@ -31,7 +31,7 @@
 			    db.transaction(function (tx) {
 			//alert("SELECT levell FROM level WHERE category="+cat);
 
-			tx.executeSql('SELECT levell FROM level WHERE category='+cat, [category], function (tx,results) { 
+			tx.executeSql('SELECT * FROM Linha', [], function (tx,results) { 
 
 
 			    alert("hello");
@@ -41,7 +41,7 @@
 
 
 			     row = results.rows.item(i);
-			editRecords2(row.lev_id,row.levell);
+			editRecords2(row.NomeNovo,row.NomeAntigo);
 
 
 			     }
@@ -54,10 +54,10 @@
 			        });
 
 
-			    function editRecords2(lev_id,levell) {
+			    function editRecords2(NomeNovo,NomeAntigo) {
 			    f = $('#level');
 			    f.html("");
-			    f.html(f.html() + '<option value='+lev_id+'>'+levell+'</option>');
+			    f.html(f.html() + '<option value='+NomeNovo+'>'+NomeAntigo+'</option>');
 			    }
 		}
 
