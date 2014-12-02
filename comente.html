@@ -11,6 +11,47 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
+
+<script>
+	var db = openDatabase('Comentarios', '1.0', 'Test DB', 2 * 1024 * 1024);
+
+	createTable();
+
+	function createTable(){
+			db.transaction(
+				function(transaction) {         
+			 		transaction.executeSql('CREATE TABLE IF NOT EXISTS Comentario (NomePessoa NOT NULL, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioOutro, PRIMARY KEY (NomePessoa))');
+			 	}
+			); 
+		}
+
+	function insertComentario(){
+			db.transaction(
+				function(transaction) {
+
+				 	transaction.executeSql('INSERT INTO Comentario (NomePessoa, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioOutro) VALUES ("Jorgin", "um primeiro comentario", "", "", "")');				 	
+				}
+			); 
+		}
+
+	function deleteTable(){
+			db.transaction(
+				function(transaction) {
+					transaction.executeSql('DROP TABLE Comentario');
+				}
+			);
+		}
+
+	function updateTable(){
+			db.transaction(
+				function(transaction) {
+					transaction.executeSql('UPDATE Linha SET NomeAntigo = "Alojamento" WHERE Trajeto="TrajetoAloja"');
+				}
+			);
+		}
+
+</script>
+
 <body>
 	<h1 class="header">Deixe aqui seu comentário/reclamação!</h1>
 	<br />

@@ -19,7 +19,6 @@
 		createTable();
 		insertLinha();
 		insertOnibus();
-		insertComentario();
 		//updateTable();
 		//printRes();
 
@@ -53,18 +52,7 @@
 			 		transaction.executeSql('CREATE TABLE IF NOT EXISTS Linha (NomeNovo NOT NULL UNIQUE, NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor, PRIMARY KEY (NomeNovo))');
 
 			 		transaction.executeSql('CREATE TABLE IF NOT EXISTS Onibus (Numero NOT NULL UNIQUE, Condicao, ArCondicionado, NomeLinha references Linha(NomeNovo), PRIMARY KEY (Numero))');
-
-			 		transaction.executeSql('CREATE TABLE IF NOT EXISTS Comentario (NomePessoa NOT NULL, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioOutro, PRIMARY KEY (NomePessoa))');
 			 	}
-			); 
-		}
-
-		function insertComentario(){
-			db.transaction(
-				function(transaction) {
-
-				 	transaction.executeSql('INSERT INTO Comentario (NomePessoa, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioOutro) VALUES ("Jorgin", "um primeiro comentario", "", "", "")');				 	
-				}
 			); 
 		}
 
@@ -101,7 +89,6 @@
 				function(transaction) {
 					transaction.executeSql('DROP TABLE Linha');
 					transaction.executeSql('DROP TABLE Onibus');
-					transaction.executeSql('DROP TABLE Comentario');
 				}
 			);
 		}
