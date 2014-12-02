@@ -11,9 +11,9 @@
 		var db = openDatabase('Interno', '1.0', 'Test DB', 2 * 1024 * 1024);
 		
 		//deleteTable();	
-		createTable();
-		insertLinha();
-		insertOnibus();
+		//createTable();
+		//insertLinha();
+		//insertOnibus();
 		//updateTable();
 		//printRes();
 		//getValue(3,'NomeAntigo');
@@ -31,7 +31,7 @@
 			    db.transaction(function (tx) {
 			//alert("SELECT levell FROM level WHERE category="+cat);
 
-			tx.executeSql('SELECT * FROM Linha', [], function (tx,results) { 
+			tx.executeSql('SELECT NomeNovo FROM Linha', [], function (tx,results) { 
 
 
 			    alert("hello");
@@ -172,12 +172,9 @@
 			<div align="left">
 				<select id='category' required>
 			        <option value='' disabled selected>Select your category</option>
-			        <option id='c1'>Category 1</option>
-			        <option id='c2'>Category 2</option>
-			        <option id='c3'>Category 3</option>
-			        <option id='c4'>Category 4</option>
-			        <option id='c5'>Category 5</option>
-			        <option id='c6'>Category 6</option>
+			        <option id='c1'>BRT Linha 1</option>
+			        <option id='c2'>BRT Linha 2</option>
+			        <option id='c3'>BRT Linha 3</option>
 		   		</select>
 
 		   <select id="level">
