@@ -20,7 +20,7 @@
 	function createTable(){
 			db.transaction(
 				function(transaction) {         
-			 		transaction.executeSql('CREATE TABLE IF NOT EXISTS Comentario (NomePessoa NOT NULL, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioOutro, PRIMARY KEY (NomePessoa))');
+			 		transaction.executeSql('CREATE TABLE IF NOT EXISTS Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro');
 			 	}
 			); 
 		}
@@ -29,7 +29,7 @@
 			db.transaction(
 				function(transaction) {
 
-				 	transaction.executeSql('INSERT INTO Comentario (NomePessoa, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioOutro) VALUES ("Jorgin", "um primeiro comentario", "", "", "")');				 	
+				 	transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("um primeiro comentario", "", "", "", "")');
 				}
 			); 
 		}
@@ -50,6 +50,48 @@
 			);
 		}
 
+	
+	function checkRadio(){
+		if(document.getElementById('circular1').checked) {
+			return 1;
+		}
+		else if(document.getElementById('circular2').checked) {
+		  return 2;
+		}
+		else if(document.getElementById('circular3').checked) {
+		  return 3;
+		}
+		else if(document.getElementById('brt').checked) {
+		  return brt;
+		}
+		else if(document.getElementById('outro').checked) {
+		  return outro;
+		}
+	}
+
+	function submitComentario(check){
+		db.transaction(
+				function(transaction) {
+					var texto = document.getElementById('campoTexto').value;
+					if(check == 1){
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (texto, "", "", "", "")');
+					}
+					else if(check == 2){
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("", texto, "", "", "")');
+					}
+					else if(check == 3){
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("", "", texto, "", "")');
+					}
+					else if(check == brt){
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("", "", "", texto, "")');
+					}
+					else if(check == outro){
+						transaction.executeSql('INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("", "", "", "", texto)');
+					}
+				}
+			);
+	}
+
 </script>
 
 <body>
@@ -57,14 +99,15 @@
 	<br />
 	<form method="post" action="???" id="form">
 		<p><em>Seu comentário é sobre?</em>
-		<input type="radio" name="onibus" value="circular1" /> Circular 1
-		<input type="radio" name="onibus" value="circular2" /> Circular 2
-		<input type="radio" name="onibus" value="circular3" /> Circular 3
-		<input type="radio" name="onibus" value="BRT" /> BRT
-		<input type="radio" name="onibus" value="outro" /> Outro</p>
+		<input type="radio" name="onibus" id="circular1" value="circular1" /> Circular 1
+		<input type="radio" name="onibus" id="circular2" value="circular2" /> Circular 2
+		<input type="radio" name="onibus" id="circular3" value="circular3" /> Circular 3
+		<input type="radio" name="onibus" id="brt" value="BRT" /> BRT
+		<input type="radio" name="onibus" id="outro" value="outro" /> Outro</p>
 		<br />
-		<textarea rows="4" cols="50" name="comment" form="form" placeholder="Deixe seu comentário!" autofocus></textarea><br />
-		<input type="submit" value="Enviar">
+		<textarea rows="4" cols="50" name="comment" id="campoTexto" form="form" placeholder="Deixe seu comentário!" autofocus></textarea><br />
+
+		<input type="button" onclick="submitComentario(checkRadio());" value="Enviar">
 	</form>
 
 </body>
