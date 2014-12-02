@@ -11,9 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
-	
-
-		<script>	
+			<script>	
 
 		var db = openDatabase('Interno', '1.0', 'Test DB', 2 * 1024 * 1024);
 		
@@ -25,48 +23,29 @@
 		//printRes();
 		//getValue(3,'NomeAntigo');
 
-		function buildSelect(){
-			$(document).ready(function(){
-			$('#category').on('change',function(){
-
-			var cat = document.getElementById('category').value;
-
-
-			    alert(cat);
-
-
-			    db.transaction(function (tx) {
-			//alert("SELECT levell FROM level WHERE category="+cat);
-
-			tx.executeSql('SELECT NomeNovo FROM Linha', [], function (tx,results) { 
-
-
-			    alert("hello");
-
-
-			    for (var i=0; i < results.rows.length; i++){
-
-
-			     row = results.rows.item(i);
-			editRecords2(row.NomeNovo,row.NomeAntigo);
-
-
-			     }
-
-
-			     });
-
-			        });
-			        });
-			        });
-
-
-			    function editRecords2(NomeNovo,NomeAntigo) {
-			    f = $('#level');
-			    f.html("");
-			    f.html(f.html() + '<option value='+NomeNovo+'>'+NomeAntigo+'</option>');
-			    }
-		}
+		function printValor(){
+			db.transaction(
+				function(transaction) {
+					transaction.executeSql(
+						"SELECT * FROM Linha",
+						[],
+						function(transaction, result){
+            				console.log('deu certo!');
+            				console.log(result);
+            				row = result.rows.item(1);
+            					 console.log(row.NomeNovo);
+            				for(var i = 0; i < result.rows.length; i++){
+            					 
+            				}
+        				},
+        				function(transaction, error){
+           					console.log('deu pau!');
+            				console.log(error);
+            			}
+            		);
+				}
+			);
+		}		
 
 		function createTable(){
 			db.transaction(
@@ -173,21 +152,4 @@
 		buildSelect();
 
 		</script>
-	
-	<body>
-		<form>
-			<div align="left">
-				<select id='category' required>
-			        <option value='' disabled selected>Select your category</option>
-			        <option id='c1'>BRT Linha 1</option>
-			        <option id='c2'>BRT Linha 2</option>
-			        <option id='c3'>BRT Linha 3</option>
-		   		</select>
-
-		   <select id="level">
-	  	 <option value="">Select your level</option>
-	   </select>
-		</div>
-	</form>
-	</body>
 </html>
