@@ -13,10 +13,10 @@
 </head>
 
 <script>
-	//var db = openDatabase('Comentarios', '1.0', 'Coisa', 2 * 1024 * 1024);
+	var db = openDatabase('Comentarios', '1.0', 'Coisa', 2 * 1024 * 1024);
 	
-	deleteTable();
-	//createTable();
+	//deleteTable();
+	createTable();
 	
 		
 	function createTable(){
@@ -40,8 +40,8 @@
 	function deleteTable(){
 			db.transaction(
 				function(transaction) {
-					//transaction.executeSql('DROP TABLE Comentario');
-					transaction.executeSql('DROP Comentarios');
+					transaction.executeSql('DROP TABLE Comentario');
+					//transaction.executeSql('DROP Comentarios');
 				}
 			);
 		}
