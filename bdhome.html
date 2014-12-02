@@ -124,7 +124,7 @@
             				console.log(result);
 
             				
-            					document.getElementById('boldStuff').innerHTML = result.rows.item(linha-1)[['NomeNovo']];
+            					document.getElementById('boldStuff').innerHTML = result.rows.item(linha)[['NomeNovo']];
             					//console.log(result.rows.item(linha-1));
             					//console.log(result.rows.item(i)[['NomeNovo']]);
             				
@@ -163,9 +163,9 @@
 		</script>
 		<body>
 			<form>
-				<input type="button" onclick="printRes(1);" value="Exibir informações da Linha 1">
-				<input type="button" onclick="printRes(2);" value="Exibir informações da Linha 2">
-				<input type="button" onclick="printRes(3);" value="Exibir informações da Linha 3">
+				<input type="button" onclick="printRes(0);" value="Exibir informações da Linha 1">
+				<input type="button" onclick="printRes(1);" value="Exibir informações da Linha 2">
+				<input type="button" onclick="printRes(2);" value="Exibir informações da Linha 3">
 				<p>Welcome to the site <b id='boldStuff'>dude</b> </p>
 
 
