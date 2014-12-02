@@ -123,7 +123,6 @@
 						function(transaction, result){
             				console.log('deu certo!');
             				console.log(result);
-
             				
             					document.getElementById('nomeNovo').innerHTML = result.rows.item(linha)[['NomeNovo']];
             					document.getElementById('nomeAntigo').innerHTML = result.rows.item(linha)[['NomeAntigo']];
@@ -131,6 +130,31 @@
             					document.getElementById('tempoDeTrajeto').innerHTML = result.rows.item(linha)[['TempoDeTrajeto']];
             					document.getElementById('horario').innerHTML = result.rows.item(linha)[['Horario']];
             					document.getElementById('cor').innerHTML = result.rows.item(linha)[['Cor']];
+            				
+        				},
+        				function(transaction, error){
+           					console.log('deu pau!');
+            				console.log(error);
+            			}
+            		);
+				}
+			);
+		}
+
+		function printResBus(linha){
+			db.transaction(
+				function(transaction) {
+					transaction.executeSql(
+						"SELECT * FROM Onibus",
+						[],
+						function(transaction, result){
+            				console.log('deu certo!');
+            				console.log(result);
+            				
+            					document.getElementById('numero').innerHTML = result.rows.item(linha)[['Numero']];
+            					document.getElementById('condicao').innerHTML = result.rows.item(linha)[['Condicao']];
+            					document.getElementById('arCondicionado').innerHTML = result.rows.item(linha)[['ArCondicionado']];
+            					document.getElementById('nomeLinha').innerHTML = result.rows.item(linha)[['NomeLinha']];
             				
         				},
         				function(transaction, error){
@@ -177,6 +201,17 @@
 				<p>Tempo do trajeto em minutos: <b id='tempoDeTrajeto'></b> </p>
 				<p>Horário de circulação: <b id='horario'></b> </p>
 				<p>Cor da linha: <b id='cor'></b> </p>
+
+				<input type="button" onclick="printResBus(0);" value="Exibir informações do ônibus 1">
+				<input type="button" onclick="printResBus(1);" value="Exibir informações do ônibus 2">
+				<input type="button" onclick="printResBus(2);" value="Exibir informações do ônibus 3">
+				<input type="button" onclick="printResBus(3);" value="Exibir informações do ônibus 4">
+
+				<p>Faz parte da linha: <b id='nomeLinha'></b> </p>
+				<p>Número: <b id='numero'></b> </p>
+				<p>Condição: <b id='condicao'></b> </p>
+				<p>Tem ar-condicionado?: <b id='arCondicionado'></b> </p>
+
 
 
 			</form>
