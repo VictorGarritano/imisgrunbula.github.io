@@ -72,11 +72,11 @@
 			db.transaction(
 				function(transaction) {
 
-				 	transaction.executeSql('INSERT INTO Linha (NomeNovo , NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor) VALUES ("Linha BRT 1", "Vila Residencial", "TrajetoVila", "60", "7 as 12", "Laranja")');
+				 	transaction.executeSql('INSERT INTO Linha (NomeNovo , NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor) VALUES ("Linha Circular 1", "Vila Residencial", "TrajetoVila", "60", "7 as 12", "Laranja")');
 
-				 	transaction.executeSql('INSERT INTO Linha (NomeNovo , NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor) VALUES ("Linha BRT 2", "Coppead", "TrajetoCoppe", "30", "7 as 12", "Azul")');
+				 	transaction.executeSql('INSERT INTO Linha (NomeNovo , NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor) VALUES ("Linha Circular 2", "Coppead", "TrajetoCoppe", "30", "7 as 12", "Azul")');
 
-				 	transaction.executeSql('INSERT INTO Linha (NomeNovo , NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor) VALUES ("Linha BRT 3", "Alojamento", "TrajetoAloja", "20", "7 as 12", "Verde")');
+				 	transaction.executeSql('INSERT INTO Linha (NomeNovo , NomeAntigo, Trajeto, TempoDeTrajeto, Horario, Cor) VALUES ("Linha Circular 3", "Alojamento", "TrajetoAloja", "20", "7 as 12", "Verde")');
 				}
 			); 
 		}
@@ -85,13 +85,13 @@
 			db.transaction(
 				function(transaction) {
 
-				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("1", "Boa", "Sim", "BRT Linha 1")');
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("1", "Boa", "Sim", "Linha Circular 1")');
 
-				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("2", "Boa", "Nao", "BRT Linha 1")');
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("2", "Boa", "Nao", "Linha Circular 1")');
 
-				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("3", "Ruim", "Sim", "BRT Linha 2")');
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("3", "Ruim", "Sim", Linha Circular 2")');
 
-				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("4", "Ruim", "Nao", "BRT Linha 3")');
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("4", "Ruim", "Nao", Linha Circular 3")');
 				}
 			); 
 		}
@@ -124,9 +124,12 @@
             				console.log(result);
 
             				
-            					document.getElementById('boldStuff').innerHTML = result.rows.item(linha)[['NomeNovo']];
-            					//console.log(result.rows.item(linha-1));
-            					//console.log(result.rows.item(i)[['NomeNovo']]);
+            					document.getElementById('nomeNovo').innerHTML = result.rows.item(linha)[['NomeNovo']];
+            					document.getElementById('NomeAntigo').innerHTML = result.rows.item(linha)[['NomeAntigo']];
+            					document.getElementById('trajeto').innerHTML = result.rows.item(linha)[['Trajeto']];
+            					document.getElementById('tempoDeTrajeto').innerHTML = result.rows.item(linha)[['TempoDeTrajeto']];
+            					document.getElementById('horario').innerHTML = result.rows.item(linha)[['Horario']];
+            					document.getElementById('cor').innerHTML = result.rows.item(linha)[['Cor']];
             				
         				},
         				function(transaction, error){
@@ -166,7 +169,13 @@
 				<input type="button" onclick="printRes(0);" value="Exibir informações da Linha 1">
 				<input type="button" onclick="printRes(1);" value="Exibir informações da Linha 2">
 				<input type="button" onclick="printRes(2);" value="Exibir informações da Linha 3">
-				<p>Welcome to the site <b id='boldStuff'>dude</b> </p>
+
+				<p>Welcome to the site <b id='nomeNovo'>dude</b> </p>				
+				<p>Welcome to the site <b id='nomeAntigo'>dude</b> </p>
+				<p>Welcome to the site <b id='trajeto'>dude</b> </p>
+				<p>Welcome to the site <b id='tempoDeTrajeto'>dude</b> </p>
+				<p>Welcome to the site <b id='horario'>dude</b> </p>
+				<p>Welcome to the site <b id='cor'>dude</b> </p>
 
 
 			</form>
