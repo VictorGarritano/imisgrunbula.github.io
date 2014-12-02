@@ -15,7 +15,7 @@
 
 		var db = openDatabase('Interno', '1.0', 'Test DB', 2 * 1024 * 1024);
 		
-		deleteTable();	
+		//deleteTable();	
 		createTable();
 		insertLinha();
 		insertOnibus();
@@ -87,9 +87,8 @@
 		function deleteTable(){
 			db.transaction(
 				function(transaction) {
-					//transaction.executeSql('DROP TABLE Linha');
-					//transaction.executeSql('DROP TABLE Onibus');
-					transaction.executeSql('DROP TABLE Comentario');
+					transaction.executeSql('DROP TABLE Linha');
+					transaction.executeSql('DROP TABLE Onibus');
 				}
 			);
 		}
