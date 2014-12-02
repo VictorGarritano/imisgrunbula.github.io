@@ -16,7 +16,7 @@
 	var db = openDatabase('Comentarios', '1.0', 'Test DB', 2 * 1024 * 1024);
 	
 	deletetable();
-	createTable();
+	//createTable();
 	
 		
 	function createTable(){
@@ -40,7 +40,8 @@
 	function deleteTable(){
 			db.transaction(
 				function(transaction) {
-					transaction.executeSql('DROP TABLE Comentario');
+					//transaction.executeSql('DROP TABLE Comentario');
+					transaction.executeSql('DROP Comentarios');
 				}
 			);
 		}
