@@ -56,23 +56,23 @@
 					
 
 					if(check == 1){
-						transaction.executeSql(updateStatementt, [texto.value, "", "", "", "", "", ""], showdatacleardata, ShowErrorMessage);
+						transaction.executeSql(updateStatement, [texto.value, "", "", "", "", "", ""], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insert1");
 					}
 					else if(check == 2){
-						transaction.executeSql(updateStatementt, ["", texto.value, "", "", "", "", ""], showdatacleardata, ShowErrorMessage);
+						transaction.executeSql(updateStatement, ["", texto.value, "", "", "", "", ""], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insert2");
 					}
 					else if(check == 3){
-						transaction.executeSql(updateStatementt, ["", "", texto.value, "", "", "", ""], showdatacleardata, ShowErrorMessage);
+						transaction.executeSql(updateStatement, ["", "", texto.value, "", "", "", ""], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insert3");
 					}
 					else if(check == brt){
-						transaction.executeSql(updateStatementt, ["", "", "", texto.value, "", "", ""], showdatacleardata, ShowErrorMessage);
+						transaction.executeSql(updateStatement, ["", "", "", texto.value, "", "", ""], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insertbrt");
 					}
 					else if(check == outro){
-						transaction.executeSql(updateStatementt, ["", "", "", "", texto.value, "", ""], showdatacleardata, ShowErrorMessage);
+						transaction.executeSql(updateStatement, ["", "", "", "", texto.value, "", ""], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insertoutro");
 					}
 				}
