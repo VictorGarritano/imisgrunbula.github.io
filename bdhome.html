@@ -102,9 +102,10 @@
 				}
 			);
 		}
+		var link;
 		
 		function printRes(linha){
-			var link;
+			
 			db.transaction(
 				function(transaction) {
 					transaction.executeSql(
