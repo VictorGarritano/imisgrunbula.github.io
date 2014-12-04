@@ -112,7 +112,7 @@
 <body>
 	<h1 class="header">Deixe aqui seu comentário/reclamação!</h1>
 	<br />
-	<form method="post" action="comente.html" id="foo">
+	<form>
 		<p><em>Seu comentário é sobre?</em>
 		<input type="radio" name="onibus" id="circular1" value="circular1" /> Circular 1
 		<input type="radio" name="onibus" id="circular2" value="circular2" /> Circular 2
@@ -122,7 +122,7 @@
 		<br />
 		<textarea rows="4" cols="50" name="comment" id="campoTexto" form="foo" placeholder="Deixe seu comentário!" autofocus></textarea><br />
 
-		<input type="submit" onclick="submitComentario(checkRadio());" value="Enviar">
+		<input type="button" onclick="submitComentario(checkRadio());" value="Enviar">
 	</form>
 
 	<br>
