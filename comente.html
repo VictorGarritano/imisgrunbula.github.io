@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 
-<script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js">
 	var db = openDatabase('Comentarios', '1.0', 'Coisa', 2 * 1024 * 1024);
 	
 	//deleteTable();
@@ -112,7 +112,7 @@
 <body>
 	<h1 class="header">Deixe aqui seu comentário/reclamação!</h1>
 	<br />
-	<form method="post" action="comente.html" id="form">
+	<form method="post" action="comente.html" id="foo">
 		<p><em>Seu comentário é sobre?</em>
 		<input type="radio" name="onibus" id="circular1" value="circular1" /> Circular 1
 		<input type="radio" name="onibus" id="circular2" value="circular2" /> Circular 2
@@ -120,9 +120,9 @@
 		<input type="radio" name="onibus" id="brt" value="BRT" /> BRT
 		<input type="radio" name="onibus" id="outro" value="outro" /> Outro</p>
 		<br />
-		<textarea rows="4" cols="50" name="comment" id="campoTexto" form="form" placeholder="Deixe seu comentário!" autofocus></textarea><br />
+		<textarea rows="4" cols="50" name="comment" id="campoTexto" form="foo" placeholder="Deixe seu comentário!" autofocus></textarea><br />
 
-		<input type="button" onclick="insertComentario();" value="Enviar">
+		<input type="submit" onclick="insertComentario();" value="Enviar">
 	</form>
 
 	<br>
