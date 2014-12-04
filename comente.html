@@ -13,7 +13,10 @@
 </head>
 
 <script>
-	var db = openDatabase('Comentarios', '1.0', 'Coisa', 2 * 1024 * 1024);
+
+	var texto = document.getElementById('campoTexto');
+
+	var db = openDatabase('Comentarios', '1.0', 'Coisa', 4 * 1024 * 1024);
 	
 	//deleteTable();
 	createTable();
@@ -22,7 +25,7 @@
 	function createTable(){
 		db.transaction(
 			function(transaction) {         
-				transaction.executeSql('CREATE TABLE IF NOT EXISTS Comentario (Numero UNIQUE NOT NULL, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro, PRIMARY KEY (Numero))');
+				transaction.executeSql('CREATE TABLE IF NOT EXISTS Comentario (id INTEGER PRIMARY KEY AUTOINCREMENT, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro)');
 			}
 		); 
 	}
@@ -47,9 +50,10 @@
 		}
 
 	function updateTable(){
+		var updateStatement = "UPDATE Comentario SET ComentarioCirc1 = ?, ComentarioCirc2 = ?,ComentarioCirc3=?,ComentarioBRT=? ,ComentarioOutro = ? WHERE id = ?";
 			db.transaction(
 				function(transaction) {
-					transaction.executeSql('UPDATE Comentario SET ComentarioCirc1	 = "Alojamento" WHERE Trajeto="TrajetoAloja"');
+					transaction.executeSql(updateStatementt, [texto.value, texto.value, texto.value, texto.value, texto.value, texto.value, texto.value], showdatacleardata, ShowErrorMessage);
 				}
 			);
 		}
@@ -73,39 +77,40 @@
 		}
 	}
 	
-	var i = 0;
 	function submitComentario(check){
+		var insertStatement = "INSERT INTO Comentario (ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) values (?,?,?,?,?)";
+
 		db.transaction(
 				function(transaction) {
 					console.log("entrei no submit");
-					var texto = document.getElementById('campoTexto').value;
 					console.log(texto);
+
 					
 					if(check == 1){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,texto, "", "", "", "")');
+						transaction.executeSql(insertStatement, [texto.value, texto.value, texto.value, texto.value, texto.value], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insert1");
 					}
 					else if(check == 2){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", texto "", "", "")');
+						transaction.executeSql(insertStatement, [texto.value, texto.value, texto.value, texto.value, texto.value], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insert2");
 					}
 					else if(check == 3){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", texto, "", "")');
+						transaction.executeSql(insertStatement, [texto.value, texto.value, texto.value, texto.value, texto.value], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insert3");
 					}
 					else if(check == brt){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", "", texto, "")');
+						transaction.executeSql(insertStatement, [texto.value, texto.value, texto.value, texto.value, texto.value], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insertbrt");
 					}
 					else if(check == outro){
-						transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES (i,"", "", "", "", texto)');
+						transaction.executeSql(insertStatement, [texto.value, texto.value, texto.value, texto.value, texto.value], showdatacleardata, ShowErrorMessage);
 						console.log("entrei no insertoutro");
 					}
-					i = i+1;
-					console.log(i);
 				}
 			);
 	}
+
+
 
 </script>
 
@@ -120,9 +125,10 @@
 		<input type="radio" name="onibus" id="brt" value="BRT" /> BRT
 		<input type="radio" name="onibus" id="outro" value="outro" /> Outro</p>
 		<br />
-		<textarea rows="4" cols="50" name="comment" id="campoTexto" form="foo" placeholder="Deixe seu comentário!" autofocus></textarea><br />
+		<textarea rows="4" cols="50" name="comment" id="campoTexto" placeholder="Deixe seu comentário!" autofocus></textarea><br />
 
-		<input type="button" onclick="submitComentario(checkRadio());" value="Enviar">
+		<button onclick="submitComentario(checkRadio())">Enviar</button>
+		<button onclick="updateTable()">Update</button>
 	</form>
 
 	<br>
