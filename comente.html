@@ -66,15 +66,17 @@
 	}		
 
 	function updateTable(check){
-		var texto = document.getElementById('campoTexto');
+		
 		var updateStatement = "UPDATE Comentario SET ComentarioCirc1 = ?, ComentarioCirc2 = ?,ComentarioCirc3=?,ComentarioBRT=? ,ComentarioOutro = ? WHERE id = ?";
 		console.log(document.getElementById('campoTexto').value);
+		console.log(texto.value);
+		var texto = document.getElementById('campoTexto');
 			db.transaction(
 				function(transaction) {
 					
 
 					if(check == 1){
-						transaction.executeSql(updateStatement, ['document.getElementById('campoTexto').value', "q", "w", "e", "r"]);
+						transaction.executeSql(updateStatement, [texto.value, "q", "w", "e", "r"]);
 						console.log("entrei no insert1");
 					}
 					else if(check == 2){
