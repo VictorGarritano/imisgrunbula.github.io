@@ -12,75 +12,13 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 
-<script src="jquery-2.1.1.min.js" type="text/javascript"></script>
-
 <script>
-
-		var request;
-
-		$("#foo").submit(function(event){
-
-	    // Abort any pending request
-	    if (request) {
-	        request.abort();
-	    }
-	    // setup some local variables
-	    var $form = $(this);
-
-	    // Let's select and cache all the fields
-	    var $inputs = $form.find("input, select, button, textarea");
-
-	    // Serialize the data in the form
-	    var serializedData = $form.serialize();
-
-	    // Let's disable the inputs for the duration of the Ajax request.
-	    // Note: we disable elements AFTER the form data has been serialized.
-	    // Disabled form elements will not be serialized.
-	    $inputs.prop("disabled", true);
-
-	    // Fire off the request to /form.php
-	    request = $.ajax({
-	        url: "/form.php",
-	        type: "post",
-	        data: serializedData
-	    });
-
-	    // Callback handler that will be called on success
-	    request.done(function (response, textStatus, jqXHR){
-	        // Log a message to the console
-	        console.log("Hooray, it worked!");
-	    });
-
-	    // Callback handler that will be called on failure
-	    request.fail(function (jqXHR, textStatus, errorThrown){
-	        // Log the error to the console
-	        console.error(
-	            "The following error occurred: "+
-	            textStatus, errorThrown
-	        );
-	    });
-
-	    // Callback handler that will be called regardless
-	    // if the request failed or succeeded
-	    request.always(function () {
-	        // Reenable the inputs
-	        $inputs.prop("disabled", false);
-	    });
-
-	    // Prevent default posting of form
-	    event.preventDefault();
-		});
-
-
-
 	var db = openDatabase('Comentarios', '1.0', 'Coisa', 2 * 1024 * 1024);
 	
-	$banco = db;
 	//deleteTable();
 	createTable();
 	
-	
-
+		
 	function createTable(){
 		db.transaction(
 			function(transaction) {         
@@ -174,19 +112,17 @@
 <body>
 	<h1 class="header">Deixe aqui seu comentário/reclamação!</h1>
 	<br />
-	<form method="post" action="comente.html" >
+	<form method="post" action="comente.html" id="foo">
 		<p><em>Seu comentário é sobre?</em>
 		<input type="radio" name="onibus" id="circular1" value="circular1" /> Circular 1
 		<input type="radio" name="onibus" id="circular2" value="circular2" /> Circular 2
 		<input type="radio" name="onibus" id="circular3" value="circular3" /> Circular 3
 		<input type="radio" name="onibus" id="brt" value="BRT" /> BRT
 		<input type="radio" name="onibus" id="outro" value="outro" /> Outro</p>
-	</form>
-	<form method="post" action="comente.html" id="foo">
-		<label for="campoTexto">Ensira seu comentário</label>
-  		<input id="campoTexto" name="campoTexto" type="text" value="" />
+		<br />
+		<textarea rows="4" cols="50" name="comment" id="campoTexto" form="foo" placeholder="Deixe seu comentário!" autofocus></textarea><br />
 
-		<input type="submit" value="Enviar">
+		<input type="submit" onclick="submitComentario(checkRadio());" value="Enviar">
 	</form>
 
 	<br>
