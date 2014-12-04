@@ -66,9 +66,9 @@
 	}		
 
 	function updateTable(check){
-		
+		var texto = document.getElementById('campoTexto').value;
 		var updateStatement = "UPDATE Comentario SET ComentarioCirc1 = ?, ComentarioCirc2 = ?,ComentarioCirc3=?,ComentarioBRT=? ,ComentarioOutro = ? WHERE id = ?";
-		console.log(document.getElementById('campoTexto').value);
+		
 			db.transaction(
 				function(transaction) {
 					
