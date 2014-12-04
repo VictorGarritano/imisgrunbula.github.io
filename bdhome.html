@@ -15,10 +15,10 @@
 
 		var db = openDatabase('Interno', '1.0', 'Test DB', 2 * 1024 * 1024);
 		
-		deleteTable();	
-		//createTable();
-		//insertLinha();
-		//insertOnibus();
+		//deleteTable();	
+		createTable();
+		insertLinha();
+		insertOnibus();
 		//updateTable();
 		//printRes();
 
@@ -73,13 +73,15 @@
 			db.transaction(
 				function(transaction) {
 
-				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("1", "Boa", "Sim", "Linha Circular 1")');
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("003", "Boa", "Sim", "Linha Circular 1")');
 
-				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("2", "Boa", "Nao", "Linha Circular 1")');
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("006", "Boa", "Sim", "BRT")');
 
-				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("3", "Ruim", "Sim", "Linha Circular 2")');
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("007", "Boa", "Não", "Linha Circular 3")');
 
-				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("4", "Ruim", "Nao", "Linha Circular 3")');
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("008", "Boa", "Sim", "Linha Circular 2")');
+				 	
+				 	transaction.executeSql('INSERT INTO Onibus (Numero, Condicao, ArCondicionado, NomeLinha) VALUES ("009", "Boa", "Sim", "BRT")');
 				}
 			); 
 		}
@@ -191,10 +193,11 @@
 
 				<br><br>
 
-				<input type="button" onclick="printResBus(0);" value="Exibir informações do ônibus 1">
-				<input type="button" onclick="printResBus(1);" value="Exibir informações do ônibus 2">
-				<input type="button" onclick="printResBus(2);" value="Exibir informações do ônibus 3">
-				<input type="button" onclick="printResBus(3);" value="Exibir informações do ônibus 4">
+				<input type="button" onclick="printResBus(0);" value="Exibir informações do ônibus 003">
+				<input type="button" onclick="printResBus(1);" value="Exibir informações do ônibus 006">
+				<input type="button" onclick="printResBus(2);" value="Exibir informações do ônibus 007">
+				<input type="button" onclick="printResBus(4);" value="Exibir informações do ônibus 008">
+				<input type="button" onclick="printResBus(5);" value="Exibir informações do ônibus 009">
 				<li><a href="home.html">Home</a></li>
 
 				<p>Faz parte da linha: <b id='nomeLinha'></b> </p>
