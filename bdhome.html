@@ -118,13 +118,13 @@
             					document.getElementById('nomeNovo').innerHTML = result.rows.item(linha)[['NomeNovo']];
             					document.getElementById('nomeAntigo').innerHTML = result.rows.item(linha)[['NomeAntigo']];
             					if(result.rows.item(linha)[['Trajeto']] == "TrajetoVila"){
-            						link = "circular1.html";
+            						document.getElementById('trajeto').href = "circular1.html";
             					}
             					else if(result.rows.item(linha)[['Trajeto']] == "TrajetoAloja"){
-            						link = "circular3.html";
+            						document.getElementById('trajeto').href = "circular3.html";
             					}
             					else if(result.rows.item(linha)[['Trajeto']] == "TrajetoCoppe"){
-            						link = "circular2.html";
+            						document.getElementById('trajeto').href = "circular2.html";
             					}
             					
             					document.getElementById('trajeto').innerHTML = result.rows.item(linha)[['Trajeto']];
