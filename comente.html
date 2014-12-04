@@ -74,23 +74,23 @@
 					
 
 					if(check == 1){
-						transaction.executeSql(updateStatement, [document.getElementById('campoTexto').value, , "", "", "", ""]);
+						transaction.executeSql(updateStatement, [document.getElementById('campoTexto').value, , "q", "w", "e", "r"]);
 						console.log("entrei no insert1");
 					}
 					else if(check == 2){
-						transaction.executeSql(updateStatement, ["", texto.value, "", "", ""]);
+						transaction.executeSql(updateStatement, ["q", texto.value, "w", "e", "r"]);
 						console.log("entrei no insert2");
 					}
 					else if(check == 3){
-						transaction.executeSql(updateStatement, ["", "", texto.value, "", ""]);
+						transaction.executeSql(updateStatement, ["q", "w", texto.value, "e", "r"]);
 						console.log("entrei no insert3");
 					}
 					else if(check == brt){
-						transaction.executeSql(updateStatement, ["", "", "", texto.value, ""]);
+						transaction.executeSql(updateStatement, ["q", "w", "e", texto.value, "r"]);
 						console.log("entrei no insertbrt");
 					}
 					else if(check == outro){
-						transaction.executeSql(updateStatement, ["", "", "", "", texto.value]);
+						transaction.executeSql(updateStatement, ["q", "w", "e", "r", texto.value]);
 						console.log("entrei no insertoutro");
 					}
 				}
