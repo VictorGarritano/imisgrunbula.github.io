@@ -49,11 +49,32 @@
 			);
 		}
 
-	function updateTable(){
+	function updateTable(check){
 		var updateStatement = "UPDATE Comentario SET ComentarioCirc1 = ?, ComentarioCirc2 = ?,ComentarioCirc3=?,ComentarioBRT=? ,ComentarioOutro = ? WHERE id = ?";
 			db.transaction(
 				function(transaction) {
-					transaction.executeSql(updateStatementt, [texto.value, texto.value, texto.value, texto.value, texto.value, texto.value, texto.value], showdatacleardata, ShowErrorMessage);
+					
+
+					if(check == 1){
+						transaction.executeSql(updateStatementt, [texto.value, "", "", "", "", "", ""], showdatacleardata, ShowErrorMessage);
+						console.log("entrei no insert1");
+					}
+					else if(check == 2){
+						transaction.executeSql(updateStatementt, ["", texto.value, "", "", "", "", ""], showdatacleardata, ShowErrorMessage);
+						console.log("entrei no insert2");
+					}
+					else if(check == 3){
+						transaction.executeSql(updateStatementt, ["", "", texto.value, "", "", "", ""], showdatacleardata, ShowErrorMessage);
+						console.log("entrei no insert3");
+					}
+					else if(check == brt){
+						transaction.executeSql(updateStatementt, ["", "", "", texto.value, "", "", ""], showdatacleardata, ShowErrorMessage);
+						console.log("entrei no insertbrt");
+					}
+					else if(check == outro){
+						transaction.executeSql(updateStatementt, ["", "", "", "", texto.value, "", ""], showdatacleardata, ShowErrorMessage);
+						console.log("entrei no insertoutro");
+					}
 				}
 			);
 		}
@@ -128,7 +149,7 @@
 		<textarea rows="4" cols="50" name="comment" id="campoTexto" placeholder="Deixe seu comentário!" autofocus></textarea><br />
 
 		<button onclick="submitComentario(checkRadio())">Enviar</button>
-		<button onclick="insertComentario()">Update</button>
+		<button onclick="insertComentario(checkRadio())">Update</button>
 	</form>
 
 	<br>
