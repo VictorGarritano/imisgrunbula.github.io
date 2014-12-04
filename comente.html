@@ -32,7 +32,7 @@
 			db.transaction(
 				function(transaction) {
 
-				 	transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("i","um primeiro comentario", "", "", "", "")');
+				 	transaction.executeSql('INSERT INTO Comentario (Numero, ComentarioCirc1, ComentarioCirc2, ComentarioCirc3, ComentarioBRT, ComentarioOutro) VALUES ("numero","teste1", "teste2", "teste3", "testebrt", "testeoutro")');
 				}
 			); 
 		}
@@ -122,7 +122,7 @@
 		<br />
 		<textarea rows="4" cols="50" name="comment" id="campoTexto" form="form" placeholder="Deixe seu comentário!" autofocus></textarea><br />
 
-		<input type="button" onclick="submitComentario(checkRadio());" value="Enviar">
+		<input type="button" onclick="insertComentario();" value="Enviar">
 	</form>
 
 	<br>
